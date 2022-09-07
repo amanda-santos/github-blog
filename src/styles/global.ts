@@ -19,6 +19,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body, input, textarea, button {
-    font: 400 1rem Roboto, sans-serif;
+    font-family: 'Nunito', sans-serif;
+    line-height: 160%;
+    font-weight: 400;
   }
 `;

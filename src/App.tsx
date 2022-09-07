@@ -8,6 +8,7 @@ export const App = (): ReactElement => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
+      Hello world
     </ThemeProvider>
   );
 };
