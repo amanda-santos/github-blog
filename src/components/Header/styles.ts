@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
-  img {
-    width: 100vw;
-  }
+  height: 10rem;
+  width: 100vw;
+  background-color: ${({ theme }) => theme.colors["base-input"]};
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: 16rem;
 `;
