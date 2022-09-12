@@ -2,12 +2,12 @@ import { ReactElement } from "react";
 
 import logoImg from "assets/logo.svg";
 
-import { HeaderContainer } from "./styles";
+import * as S from "./styles";
 
 export const Header = (): ReactElement => {
   return (
-    <HeaderContainer>
+    <S.HeaderContainer>
       <img src={logoImg} alt="" />
-    </HeaderContainer>
+    </S.HeaderContainer>
   );
 };

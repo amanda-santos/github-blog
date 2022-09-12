@@ -8,31 +8,27 @@ import {
 
 import avatarImg from "assets/avatar.svg";
 
-import {
-  Metadata,
-  UserInformationContainer,
-  UserInformationTitle,
-} from "./styles";
+import * as S from "./styles";
 
 export const UserInformation = (): ReactElement => {
   return (
-    <UserInformationContainer>
+    <S.UserInformationContainer>
       <img src={avatarImg} alt="Cameron Williamson" />
 
       <div>
-        <UserInformationTitle>
+        <S.UserInformationTitle>
           <h1>Cameron Williamson</h1>
           <a href="">
             Github <FaShareSquare size={12} />
           </a>
-        </UserInformationTitle>
+        </S.UserInformationTitle>
         <p>
           Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
           viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
           pulvinar vel mass.
         </p>
 
-        <Metadata>
+        <S.Metadata>
           <span>
             <FaGithub size={16} /> cameronwll
           </span>
@@ -42,8 +38,8 @@ export const UserInformation = (): ReactElement => {
           <span>
             <FaUserFriends size={16} /> 32 seguidores
           </span>
-        </Metadata>
+        </S.Metadata>
       </div>
-    </UserInformationContainer>
+    </S.UserInformationContainer>
   );
 };

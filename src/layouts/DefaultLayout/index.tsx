@@ -2,15 +2,15 @@ import { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 
 import { Header } from "components";
-import { LayoutContainer, OutletContainer } from "layouts/DefaultLayout/styles";
+import * as S from "layouts/DefaultLayout/styles";
 
 export const DefaultLayout = (): ReactElement => {
   return (
-    <LayoutContainer>
+    <S.LayoutContainer>
       <Header />
-      <OutletContainer>
+      <S.OutletContainer>
         <Outlet />
-      </OutletContainer>
-    </LayoutContainer>
+      </S.OutletContainer>
+    </S.LayoutContainer>
   );
 };

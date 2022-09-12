@@ -7,9 +7,8 @@ export const UserInformationContainer = styled.div`
   gap: 3.2rem;
 
   padding: 3.2rem 4rem;
-  margin: 0 3.2rem;
+
   border-radius: 1rem;
-  max-width: 86.4rem;
 
   background-color: ${({ theme }) => theme.colors["base-profile"]};
 
