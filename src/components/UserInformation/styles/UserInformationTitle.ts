@@ -24,4 +24,10 @@ export const UserInformationTitle = styled.div`
       border-bottom: 1px solid ${({ theme }) => theme.colors["base-primary"]};
     }
   }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 2.4rem;
+  }
 `;
