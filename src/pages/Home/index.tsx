@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import { UserInformation } from "pages/Home/components";
+import { PostPreview, UserInformation } from "pages/Home/components";
 
 import * as S from "./styles";
 
@@ -15,6 +15,15 @@ export const Home = (): ReactElement => {
           <span>6 posts</span>
         </S.PostsHeading>
         <input type="text" placeholder="Search content" />
+
+        <S.Posts>
+          <PostPreview />
+          <PostPreview />
+          <PostPreview />
+          <PostPreview />
+          <PostPreview />
+          <PostPreview />
+        </S.Posts>
       </S.MainContent>
     </div>
   );
