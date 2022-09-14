@@ -9,3 +9,12 @@ export type Post = {
   commentsAmount: number;
   link: string;
 };
+
+export type User = {
+  avatarUrl: string;
+  username: string;
+  name: string;
+  bio: string;
+  followersAmount: number;
+  company: string;
+}

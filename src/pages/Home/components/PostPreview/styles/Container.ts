@@ -28,7 +28,7 @@ export const Container = styled.div`
       h2 {
         color: ${({ theme }) => theme.colors["base-primary"]};
         text-decoration: underline;
-        transition: 0.1s ease-in;
+        transition: 0.05s ease-in;
       }
     }
   }

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const UserInformationContainer = styled.div`
   display: flex;
-  align-items: fl;
+  align-items: center;
   justify-content: flex-start;
   gap: 3.2rem;
 
@@ -30,9 +30,11 @@ export const UserInformationContainer = styled.div`
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: column;
+    align-items: flex-start;
 
     img {
-      width: 100%;
+      width: 30%;
+      height: 100%;
     }
   }
 `;

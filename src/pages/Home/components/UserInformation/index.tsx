@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import {
   FaBuilding,
   FaGithub,
@@ -6,40 +6,63 @@ import {
   FaUserFriends,
 } from "react-icons/fa";
 
-import avatarImg from "assets/avatar.svg";
+import { api } from "services/api";
+import { User } from "types";
 
 import * as S from "./styles";
 
-export const UserInformation = (): ReactElement => {
+export const UserInformation = (): ReactElement | null => {
+  const [user, setUser] = useState<User | null>(null);
+  const USERNAME = "amanda-santos";
+
+  const fetchUser = async (username: string) => {
+    const response = await api.get(`users/${username}`);
+    const { data } = response;
+
+    setUser({
+      avatarUrl: data.avatar_url,
+      bio: data.bio,
+      company: data.company,
+      followersAmount: data.followers,
+      name: data.name,
+      username: data.login,
+    });
+  };
+
+  useEffect(() => {
+    fetchUser(USERNAME);
+  }, []);
+
+  if (!user) return null;
+
   return (
     <S.UserInformationContainer>
-      <img src={avatarImg} alt="Cameron Williamson" />
-
-      <div>
+      <img src={user.avatarUrl} alt={user.name} />
+      <S.RightSideContainer>
         <S.UserInformationTitle>
-          <h1>Cameron Williamson</h1>
-          <a href="">
+          <h1>{user.name}</h1>
+          <a
+            href={`https://github.com/${user.username}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             Github <FaShareSquare size={12} />
           </a>
         </S.UserInformationTitle>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{user.bio}</p>
 
         <S.Metadata>
           <span>
-            <FaGithub size={16} /> cameronwll
+            <FaGithub size={16} /> {user.username}
           </span>
           <span>
-            <FaBuilding size={16} /> Rocketseat
+            <FaBuilding size={16} /> {user.company}
           </span>
           <span>
-            <FaUserFriends size={16} /> 32 seguidores
+            <FaUserFriends size={16} /> {user.followersAmount} followers
           </span>
         </S.Metadata>
-      </div>
+      </S.RightSideContainer>
     </S.UserInformationContainer>
   );
 };

@@ -4,7 +4,7 @@ export const UserInformationTitle = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.6rem;
+  width: 100%;
 
   a {
     color: ${({ theme }) => theme.colors["base-primary"]};
