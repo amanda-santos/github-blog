@@ -1,4 +1,8 @@
-import { ReactElement, useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import debounce from "debounce";
+import { FormEvent, ReactElement, useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as zod from "zod";
 
 import { PostPreview, UserInformation } from "pages/Home/components";
 import { api } from "services/api";
@@ -13,18 +17,31 @@ type IssueType = {
   created_at: string;
 };
 
+const searchFormSchema = zod.object({
+  query: zod.string(),
+});
+
+type SearchFormInputs = zod.infer<typeof searchFormSchema>;
+
 export const Home = (): ReactElement => {
-  const searchValue = "";
   const REPO_NAME = "amanda-santos/github-blog";
 
   const [posts, setPosts] = useState<Omit<Post, "author" | "commentsAmount">[]>(
     []
   );
 
-  const fetchIssues = async () => {
+  const { control, watch } = useForm<SearchFormInputs>({
+    resolver: zodResolver(searchFormSchema),
+    defaultValues: {
+      query: "",
+    },
+  });
+  const query = watch("query");
+
+  const fetchIssues = async (query: string) => {
     const response = await api.get("search/issues", {
       params: {
-        q: `${searchValue} repo:${REPO_NAME}`,
+        q: `${query} repo:${REPO_NAME}`,
       },
     });
 
@@ -39,8 +56,8 @@ export const Home = (): ReactElement => {
   };
 
   useEffect(() => {
-    fetchIssues();
-  }, []);
+    fetchIssues(query);
+  }, [query]);
 
   return (
     <div>
@@ -49,9 +66,23 @@ export const Home = (): ReactElement => {
       <S.MainContent>
         <S.PostsHeading>
           <h3>Posts</h3>
-          <span>6 posts</span>
+          <span>{posts.length} posts</span>
         </S.PostsHeading>
-        <input type="text" placeholder="Search content" />
+
+        <Controller
+          control={control}
+          name="query"
+          render={({ field }) => (
+            <input
+              type="text"
+              onChange={debounce(
+                (event: FormEvent) => field.onChange(event),
+                500
+              )}
+              defaultValue={field.value}
+            />
+          )}
+        />
 
         <S.Posts>
           {posts.map((post) => (
