@@ -7,10 +7,11 @@ export const OutletContainer = styled.main`
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.xl}) {
     padding: 2.4rem 0;
-    margin-top: -14rem;
+    margin-top: -12rem;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 2.4rem 0;
+    margin: -14rem 2.4rem 0 2.4rem;
   }
 `;
