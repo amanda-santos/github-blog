@@ -21,6 +21,18 @@ export const Container = styled.div`
     -webkit-box-orient: vertical;
   }
 
+  a {
+    text-decoration: none;
+
+    &:hover {
+      h2 {
+        color: ${({ theme }) => theme.colors["base-primary"]};
+        text-decoration: underline;
+        transition: 0.1s ease-in;
+      }
+    }
+  }
+
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     p {
       -webkit-line-clamp: 3;

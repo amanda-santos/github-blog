@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 import * as S from "./styles";
 
@@ -6,7 +7,9 @@ export const PostPreview = (): ReactElement => {
   return (
     <S.Container>
       <S.Heading>
-        <h2>JavaScript data types and data structures</h2>
+        <Link to="/post">
+          <h2>JavaScript data types and data structures</h2>
+        </Link>
         <span>1 day ago</span>
       </S.Heading>
 
