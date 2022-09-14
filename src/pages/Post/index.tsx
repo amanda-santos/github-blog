@@ -1,44 +1,56 @@
-import { ReactElement } from "react";
+import { REPO_NAME } from "constants";
 
+import { ReactElement, useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { useParams } from "react-router-dom";
+
+import { api } from "services/api";
 import { Post as PostType } from "types";
 
 import { Header } from "./components";
 import * as S from "./styles";
 
-export const Post = (): ReactElement => {
-  const post: Omit<PostType, "id" | "content"> = {
-    title: "JavaScript data types and data structures",
-    author: {
-      username: "cameronwll",
-    },
-    createdAt: "2021-03-01",
-    commentsAmount: 32,
-    link: "github.com/cameronwll",
+export const Post = (): ReactElement | null => {
+  const { id } = useParams();
+  const [post, setPost] = useState<PostType>();
+
+  const fetchIssue = async (id: string) => {
+    const response = await api.get(`repos/${REPO_NAME}/issues/${id}`);
+
+    const formattedPost: PostType = {
+      id,
+      title: response.data.title,
+      content: response.data.body,
+      createdAt: response.data.created_at,
+      author: {
+        username: response.data.user.login,
+      },
+      commentsAmount: response.data.comments,
+    };
+
+    setPost(formattedPost);
   };
+
+  useEffect(() => {
+    fetchIssue(id ?? "");
+  }, [id]);
+
+  if (!post) return null;
 
   return (
     <S.Container>
-      <Header post={post} />
+      <Header
+        post={{
+          id: post.id,
+          author: post.author,
+          commentsAmount: post.commentsAmount,
+          createdAt: post.createdAt,
+          title: post.title,
+        }}
+      />
 
       <S.Content>
-        <p>
-          <b>
-            Programming languages all have built-in data structures, but these
-            often differ from one language to another.
-          </b>{" "}
-          This article attempts to list the built-in data structures available
-          in JavaScript and what properties they have. These can be used to
-          build other data structures. Wherever possible, comparisons with other
-          languages are drawn.{" "}
-        </p>
-
-        <h4>Dynamic typing</h4>
-        <p>
-          JavaScript is a loosely typed and dynamic language. Variables in
-          JavaScript are not directly associated with any particular value type,
-          and any variable can be assigned (and re-assigned) values of all
-          types:
-        </p>
+        <ReactMarkdown>{post.content}</ReactMarkdown>
       </S.Content>
     </S.Container>
   );

@@ -1,3 +1,5 @@
+import { REPO_NAME } from "constants";
+
 import { ReactElement } from "react";
 import {
   FaCalendarDay,
@@ -9,15 +11,16 @@ import {
 import { Link } from "react-router-dom";
 
 import { Post as PostType } from "types";
+import { formatDateToNow } from "utils/formatDateToNow";
 
 import * as S from "./styles";
 
 type HeaderProps = {
-  post: Omit<PostType, "id" | "content">;
+  post: Omit<PostType, "content">;
 };
 
 export const Header = ({ post }: HeaderProps): ReactElement => {
-  const { title, author, createdAt, commentsAmount, link } = post;
+  const { id, title, author, createdAt, commentsAmount } = post;
 
   return (
     <S.Container>
@@ -25,7 +28,11 @@ export const Header = ({ post }: HeaderProps): ReactElement => {
         <Link to="/">
           <FaLessThan /> Back
         </Link>
-        <a href={link}>
+        <a
+          href={`https://github.com/${REPO_NAME}/issues/${id}`}
+          target="_blank"
+          rel="noreferrer"
+        >
           See on Github <FaShareSquare size={12} />
         </a>
       </S.Heading>
@@ -38,7 +45,7 @@ export const Header = ({ post }: HeaderProps): ReactElement => {
         </span>
         <span>
           <FaCalendarDay />
-          {createdAt}
+          {formatDateToNow(new Date(createdAt))}
         </span>
         <span>
           <FaComment />

@@ -1,3 +1,5 @@
+import { REPO_NAME } from "constants";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import debounce from "debounce";
 import { FormEvent, ReactElement, useEffect, useState } from "react";
@@ -24,8 +26,6 @@ const searchFormSchema = zod.object({
 type SearchFormInputs = zod.infer<typeof searchFormSchema>;
 
 export const Home = (): ReactElement => {
-  const REPO_NAME = "amanda-santos/github-blog";
-
   const [posts, setPosts] = useState<Omit<Post, "author" | "commentsAmount">[]>(
     []
   );
