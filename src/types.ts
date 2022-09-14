@@ -7,7 +7,6 @@ export type Post = {
   };
   createdAt: string;
   commentsAmount: number;
-  link: string;
 };
 
 export type User = {
@@ -17,4 +16,4 @@ export type User = {
   bio: string;
   followersAmount: number;
   company: string;
-}
+};

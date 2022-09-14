@@ -15,8 +15,9 @@ export const Heading = styled.div`
   span {
     font-size: 1.4rem;
     color: ${({ theme }) => theme.colors["base-span"]};
-    width: 30%;
+    width: 50%;
     text-align: right;
+    line-height: 130%;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
