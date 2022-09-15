@@ -6,6 +6,7 @@ import { FormEvent, ReactElement, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as zod from "zod";
 
+import emptyStateImg from "assets/empty-state.svg";
 import { PostPreview, UserInformation } from "pages/Home/components";
 import { api } from "services/api";
 import { Post } from "types";
@@ -84,11 +85,18 @@ export const Home = (): ReactElement => {
           )}
         />
 
-        <S.Posts>
-          {posts.map((post) => (
-            <PostPreview key={post.id} post={post} />
-          ))}
-        </S.Posts>
+        {posts.length > 0 ? (
+          <S.Posts>
+            {posts.map((post) => (
+              <PostPreview key={post.id} post={post} />
+            ))}
+          </S.Posts>
+        ) : (
+          <S.EmptyState>
+            <span>Oh no, we couldn&apos;t find anything ☹️</span>
+            <img src={emptyStateImg} alt="Empty state" />
+          </S.EmptyState>
+        )}
       </S.MainContent>
     </div>
   );
