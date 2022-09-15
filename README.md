@@ -29,7 +29,7 @@
 
 ## 📝 About the project
 
-<p>This is a blog made with the Github Issues API. It was built during the Ignite course by <a href="https://rocketseat.com.br/">Rocketseat</a>.</p>
+<p>This is a fully responsive blog made with the Github Issues API. It was built during the Ignite course by <a href="https://rocketseat.com.br/">Rocketseat</a>.</p>
 </p>
 
 ## 🎨 Layout
@@ -54,6 +54,10 @@ Technologies used to develop this project:
 - Github API
 
 ## 🖥 Preview
+
+https://user-images.githubusercontent.com/49074930/190404692-f30d32d5-f093-476e-8ec0-3fc4ce6e27bc.mp4
+
+https://user-images.githubusercontent.com/49074930/190404707-3b4d69f6-3f45-49e5-816f-c39bf5a66da1.mp4
 
 Click <a href="https://github-blog-amanda-santos.vercel.app/">here</a> to see it live 📺
 
